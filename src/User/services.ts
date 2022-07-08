@@ -11,7 +11,7 @@ export const createUser = async (req: Request, res: Response): Promise<any> => {
 };
 
 export const updateUser = async (req: Request, res: Response): Promise<any> => {
-  const user = await UserModel.findByIdAndUpdate(req.body.id, {
+  const user = await UserModel.findByIdAndUpdate(req.params.id, {
     password: req.body.password || undefined,
     email: req.body.email || undefined,
     username: req.body.username || undefined,
@@ -21,8 +21,11 @@ export const updateUser = async (req: Request, res: Response): Promise<any> => {
 };
 
 export const deleteUser = async (req: Request, res: Response): Promise<any> => {
-  const users = await UserModel.findByIdAndDelete(req.body.id);
-  res.json(users);
+  const users = await UserModel.findByIdAndDelete(req.params.id);
+  res.json({
+    data: users,
+    status_code: res.statusCode,
+  });
 };
 
 export const getUsers = async (req: Request, res: Response): Promise<any> => {

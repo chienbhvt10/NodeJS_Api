@@ -8,9 +8,9 @@ import {
   getUsers,
 } from "./services";
 
-router.post("/create-user", createUser);
-router.put("/update-user", updateUser);
-router.delete("/delete-user", deleteUser);
+router.post("/", createUser);
+router.put("/:id", updateUser);
+router.delete("/:id", deleteUser);
 router.get("/:id", getUser);
 router.get("/", getUsers);
 
